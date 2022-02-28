@@ -1,5 +1,8 @@
 package userService;
 
+import location.Location;
+import location.LocationManagement;
+
 import java.util.Scanner;
 
 public class UserInformation {
@@ -23,5 +26,23 @@ public class UserInformation {
         System.out.println(infoToUser);
         Scanner sc = new Scanner(System.in);
         return sc.nextLine();
+    }
+
+    public static void displayAllLocations() {
+        System.out.println("All locations: ");
+        LocationManagement locationManagement = new LocationManagement();
+        locationManagement.getListOfAllLocations().forEach(System.out::println);
+    }
+
+    public static void addLocation() {
+        Location location = new Location(
+                UserInformation.getInfoFromUser("Type coordinates"),
+                UserInformation.getInfoFromUser("Type city"),
+                UserInformation.getInfoFromUser("Type region"),
+                UserInformation.getInfoFromUser("Type country")
+        );
+
+        LocationManagement locationManagement = new LocationManagement();
+        locationManagement.addLocation(location);
     }
 }
