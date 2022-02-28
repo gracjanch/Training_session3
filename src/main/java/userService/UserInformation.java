@@ -10,6 +10,6 @@ public class UserInformation {
         System.out.println("[2] - Display all locations.");
         System.out.println("[3] - Show weather.");
         System.out.println("[4] - Quit.");
-        System.out.println("Choose an option: ");
+        System.out.print("Choose an option: ");
     }
 }
