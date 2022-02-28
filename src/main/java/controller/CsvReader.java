@@ -12,9 +12,9 @@ import java.util.stream.Stream;
 public abstract class CsvReader {
     private static final String PATH = "src/main/resources/weatherFiles/locations.csv";
 
-    protected List<Location> read() {
+    protected List<Location> read(String path) {
         List<Location> locations = new LinkedList<>();
-        try (Stream<String> stream = Files.lines(Paths.get(PATH))) {
+        try (Stream<String> stream = Files.lines(Paths.get(path))) {
             stream.forEach(line -> locations.add(parseLine(line)));
         } catch (IOException e) {
             System.err.println("Unable to read the file.");
