@@ -11,7 +11,7 @@ public class LocationManagement {
     }
 
     public List<Location> getListOfAllLocations(){
-        CsvReader csvReader = new CsvLocationLoader();
+        CsvLocationLoader csvReader = new CsvLocationLoader();
         return csvReader.read("src/main/resources/weatherFiles/locations.csv");
     }
 
