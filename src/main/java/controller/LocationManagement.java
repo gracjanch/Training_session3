@@ -11,7 +11,7 @@ public class LocationManagement {
     }
 
     public List<Location> getListOfAllLocations(){
-        CsvReader csvReader = new CsvReader();
+        CsvReader csvReader = new CsvLocationLoader();
         return csvReader.read();
     }
 
