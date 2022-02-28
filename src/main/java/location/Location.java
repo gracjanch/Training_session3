@@ -10,16 +10,14 @@ public class Location {
     private String country;
 
     public Location(String coordinates, String city, String region, String country) {
-        this.id = gennerateUUID();
+        this.id = UUID.randomUUID();
         this.coordinates = coordinates;
         this.city = city;
         this.region = region;
         this.country = country;
     }
 
-    private UUID gennerateUUID() {
-        UUID randomUUID = UUID.randomUUID();
-        return randomUUID;
+    public Location() {
     }
 
     public UUID getId() {
