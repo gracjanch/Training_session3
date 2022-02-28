@@ -21,9 +21,15 @@ public class UserManagement {
 
     private void selectOption(String choice) {
         switch (choice) {
-            case "1" -> UserInformation.addLocation();
-            case "2" -> UserInformation.displayAllLocations();
-            case "3" -> System.out.println("option 3");
+            case "1":
+                UserInformation.addLocation();
+                break;
+            case "2":
+                UserInformation.displayAllLocations();
+                break;
+            case "3":
+                System.out.println("option 3");
+                break;
         }
     }
     private String userChoice() {
