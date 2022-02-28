@@ -2,6 +2,8 @@ package location;
 
 import java.util.UUID;
 
+import static location.LocationValidate.validCity;
+
 public class Location {
     private UUID id;
     private String coordinates;
@@ -70,4 +72,18 @@ public class Location {
                 ", country='" + country + '\'' +
                 '}';
     }
+
+    public Location addLocation(){
+        System.out.println("Write coordinates: (-90 -> 0 (S) 0 -> 90 (N))");
+        String coordinates = "";
+        System.out.println("Write city name: (cannot be empty)");
+        //String city = validCity();
+        String city = "";
+        System.out.println("Write region: (optional)");
+        String region = "";
+        System.out.println("Write country name: (cannot be empty)");
+        String country = "";
+        return new Location(coordinates, city, region, country);
+    }
+
 }
