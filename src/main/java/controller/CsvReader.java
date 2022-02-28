@@ -9,11 +9,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Stream;
 
-public abstract class CsvReader {
-    private static final String PATH = "src/main/resources/weatherFiles/locations.csv";
-
-    protected List<Location> read(String path) {
-        List<Location> locations = new LinkedList<>();
+public abstract class CsvReader<T> {
+    protected List<T> read(String path) {
+        List<T> locations = new LinkedList<>();
         try (Stream<String> stream = Files.lines(Paths.get(path))) {
             stream.forEach(line -> locations.add(parseLine(line)));
         } catch (IOException e) {
@@ -22,6 +20,5 @@ public abstract class CsvReader {
         return locations;
     }
 
-    protected abstract Location parseLine(String line);
-
+    protected abstract T parseLine(String line);
 }

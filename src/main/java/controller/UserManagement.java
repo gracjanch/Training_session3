@@ -27,7 +27,7 @@ public class UserManagement {
                 UserInformation.displayAllLocations();
                 break;
             case "3":
-                System.out.println("option 3");
+                UserInformation.displayWeather();
                 break;
         }
     }

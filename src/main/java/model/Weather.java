@@ -1,26 +1,29 @@
 package model;
 
 public class Weather {
-    private Location location;
+    private String cityName;
     private String temperature;
     private String pressure;
     private String humidity;
     private String wind;
 
-    public Weather(Location location, String temperature, String pressure, String humidity, String wind) {
-        this.location = location;
+    public Weather(String cityName, String temperature, String pressure, String humidity, String wind) {
+        this.cityName = cityName;
         this.temperature = temperature;
         this.pressure = pressure;
         this.humidity = humidity;
         this.wind = wind;
     }
 
-    public Location getLocation() {
-        return location;
+    public Weather() {
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
     }
 
     public String getTemperature() {
@@ -58,7 +61,7 @@ public class Weather {
     @Override
     public String toString() {
         return "Weather{" +
-                "location=" + location +
+                "cityName=" + cityName +
                 ", temperature='" + temperature + '\'' +
                 ", pressure='" + pressure + '\'' +
                 ", humidity='" + humidity + '\'' +
