@@ -1,4 +1,4 @@
-package location;
+package controller;
 
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -21,6 +21,8 @@ public class LocationValidate {
         }while(x != true);
         return cityLocation;
     }
+
+
 
 
 }

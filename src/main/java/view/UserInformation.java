@@ -1,7 +1,7 @@
-package userService;
+package view;
 
-import location.Location;
-import location.LocationManagement;
+import model.Location;
+import controller.LocationManagement;
 
 import java.util.Scanner;
 

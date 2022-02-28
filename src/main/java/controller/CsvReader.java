@@ -1,11 +1,10 @@
-package reader;
+package controller;
 
-import location.Location;
+import model.Location;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;

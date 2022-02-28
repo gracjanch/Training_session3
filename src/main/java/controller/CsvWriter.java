@@ -1,6 +1,6 @@
-package writer;
+package controller;
 
-import location.Location;
+import model.Location;
 
 import java.io.IOException;
 import java.nio.file.Files;
