@@ -1,7 +1,6 @@
-package location;
+package controller;
 
-import reader.CsvReader;
-import writer.CsvWriter;
+import model.Location;
 
 import java.util.List;
 
