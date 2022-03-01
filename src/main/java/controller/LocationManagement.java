@@ -6,6 +6,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LocationManagement {
+    private final String path;
+
+    public LocationManagement(String path) {
+        this.path = path;
+    }
+
     public void addLocation(Location location) {
         CsvWriter csvWriter = new CsvWriter();
         csvWriter.write(location);
@@ -13,7 +19,7 @@ public class LocationManagement {
 
     public List<Location> getListOfAllLocations(){
         CsvLocationLoader csvReader = new CsvLocationLoader();
-        return csvReader.read("src/main/resources/weatherFiles/locations.csv")
+        return csvReader.read(path)
                 .stream()
                 .filter(location -> location != null)
                 .toList();

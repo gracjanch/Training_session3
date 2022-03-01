@@ -71,6 +71,31 @@ public class Location {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Location location = (Location) o;
+
+        if (id != null ? !id.equals(location.id) : location.id != null) return false;
+        if (coordinates != null ? !coordinates.equals(location.coordinates) : location.coordinates != null)
+            return false;
+        if (city != null ? !city.equals(location.city) : location.city != null) return false;
+        if (region != null ? !region.equals(location.region) : location.region != null) return false;
+        return country != null ? country.equals(location.country) : location.country == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (coordinates != null ? coordinates.hashCode() : 0);
+        result = 31 * result + (city != null ? city.hashCode() : 0);
+        result = 31 * result + (region != null ? region.hashCode() : 0);
+        result = 31 * result + (country != null ? country.hashCode() : 0);
+        return result;
+    }
+
     public Location addLocation() {
         System.out.println("Write coordinates: (-90 -> 0 (S) 0 -> 90 (N))");
         String coordinates = "";

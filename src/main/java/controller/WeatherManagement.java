@@ -7,17 +7,23 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class WeatherManagement {
-    public List<Weather> getListOfWeatherInEachCity() {
+    private final String path;
+
+    public WeatherManagement(String path) {
+        this.path = path;
+    }
+
+    private List<Weather> getListOfWeatherInEachCity() {
         CsvWeatherLoader csvWeatherLoader = new CsvWeatherLoader();
-        return csvWeatherLoader.read("src/main/resources/weatherFiles/weather.csv")
+        return csvWeatherLoader.read(path)
                 .stream()
                 .filter(weather -> weather != null)
                 .toList();
     }
 
     public List<Weather> getListOfWeatherToDisplay() {
-        LocationManagement locationManagement = new LocationManagement();
-        WeatherManagement weatherManagement = new WeatherManagement();
+        LocationManagement locationManagement = new LocationManagement("src/main/resources/weatherFiles/location.csv");
+        WeatherManagement weatherManagement = new WeatherManagement("src/main/resources/weatherFiles/weather.csv");
 
         List<Location> locations = locationManagement.getListOfAllLocations();
         List<Weather> weatherList = weatherManagement.getListOfWeatherInEachCity();
