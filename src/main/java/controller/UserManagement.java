@@ -10,7 +10,7 @@ public class UserManagement {
 
         while (true) {
             UserInformation.options();
-            String choice = userChoice();
+            String choice = UserValidate.validUserChoice();
             if(choice.equals("4")) {
                 break;
             }
@@ -31,7 +31,7 @@ public class UserManagement {
                 break;
         }
     }
-    private String userChoice() {
+    public static String userChoice() {
         Scanner sc = new Scanner(System.in);
         return sc.nextLine();
     }

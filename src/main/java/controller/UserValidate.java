@@ -9,17 +9,17 @@ public class UserValidate {
 
     public static String validUserChoice(){
         boolean properlyValue;
-        String userChoice;
+        String uChoice;
         do{
-            userChoice = userChoice();
+            uChoice = UserManagement.userChoice();
             Pattern userChoicePattern = Pattern.compile("[1-4]{1}");
-            Matcher m = userChoicePattern.matcher(userChoice);
+            Matcher m = userChoicePattern.matcher(uChoice);
             properlyValue = m.find();
             if(properlyValue == true){
-                return userChoice;
+                return uChoice;
             }
             System.out.println("Incorrect data. Write again.");
         }while(properlyValue != true);
-        return userChoice;
+        return uChoice;
     }
 }
