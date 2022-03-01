@@ -13,7 +13,7 @@ public class LocationManagement {
     }
 
     public void addLocation(Location location) {
-        CsvWriter csvWriter = new CsvWriter();
+        CsvWriter csvWriter = new CsvWriter("src/main/resources/weatherFiles/locations.csv");
         csvWriter.write(location);
     }
 
