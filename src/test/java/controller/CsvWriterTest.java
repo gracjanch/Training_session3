@@ -17,7 +17,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class CsvWriterTest {
     @Test
-    void shouldWriteText() {
+    void shouldWrite() {
         String path = "src/test/resources/weatherFiles/locationTest.csv";
 
         CsvWriter csvWriter = new CsvWriter(path);
