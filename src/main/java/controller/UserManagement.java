@@ -21,7 +21,7 @@ public class UserManagement {
     private void selectOption(String choice) {
         switch (choice) {
             case "1":
-                UserInformation.addLocation();
+                LocationManagement.addLocation();
                 break;
             case "2":
                 UserInformation.displayAllLocations();
