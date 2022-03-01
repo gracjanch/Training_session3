@@ -38,16 +38,12 @@ public class UserInformation {
         locationManagement.getListOfAllLocations().forEach(System.out::println);
     }
 
-    public static void addLocation() {
-        Location location = new Location(
-                UserInformation.getInfoFromUser("Type coordinates"),
-                UserInformation.getInfoFromUser("Type city"),
-                UserInformation.getInfoFromUser("Type region"),
-                UserInformation.getInfoFromUser("Type country")
-        );
-
-        LocationManagement locationManagement = new LocationManagement("src/main/resources/weatherFiles/locations.csv");
-        locationManagement.addLocation(location);
+    public static void addLocationMessages(int indeks) {
+        String[] locationMessages = {"Write coordinates: (example: 40x100)",
+                "Write city name: (cannot be empty)",
+                "Write region: (optional)",
+                "Write country name: (cannot be empty)"};
+        System.out.println(locationMessages[indeks]);
     }
 
     public static void displayWeather() {
