@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Stream;
 
-import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class LocationManagementTest {
@@ -48,5 +47,16 @@ class LocationManagementTest {
         assertThat(result[2]).isEqualTo(location.getCity());
         assertThat(result[3]).isEqualTo(location.getRegion());
         assertThat(result[4]).isEqualTo(location.getCountry());
+    }
+
+    @Test
+    void shouldReturnListWithoutNull() {
+        String path = "src/test/resources/weatherFiles/locationTest.csv";
+
+        LocationManagement locationManagement = new LocationManagement(path);
+        List<Location> result = locationManagement.getListOfAllLocations();
+
+        assertThat(result).hasSize(2)
+                .doesNotContainNull();
     }
 }
