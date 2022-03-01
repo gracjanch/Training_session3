@@ -38,11 +38,11 @@ public class LocationValidate {
             firstCoordBoolean= firstCoord >= -90 && firstCoord <= 90;
             secondCoordBoolean = secondCoord >= -180 && secondCoord <= 180;
 
-            if(properlyValue == true && firstCoordBoolean && secondCoordBoolean){
+            if(properlyValue && firstCoordBoolean && secondCoordBoolean){
                 return cityCoordinate;
             }
             System.out.println("Incorrect data. Write coordinates again.");
-        }while(properlyValue != true || firstCoordBoolean != true || secondCoordBoolean != true);
+        }while(!properlyValue || !firstCoordBoolean || !secondCoordBoolean);
         return cityCoordinate;
     }
 
