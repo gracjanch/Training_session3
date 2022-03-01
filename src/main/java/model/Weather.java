@@ -68,4 +68,28 @@ public class Weather {
                 ", wind='" + wind + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Weather weather = (Weather) o;
+
+        if (cityName != null ? !cityName.equals(weather.cityName) : weather.cityName != null) return false;
+        if (temperature != null ? !temperature.equals(weather.temperature) : weather.temperature != null) return false;
+        if (pressure != null ? !pressure.equals(weather.pressure) : weather.pressure != null) return false;
+        if (humidity != null ? !humidity.equals(weather.humidity) : weather.humidity != null) return false;
+        return wind != null ? wind.equals(weather.wind) : weather.wind == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = cityName != null ? cityName.hashCode() : 0;
+        result = 31 * result + (temperature != null ? temperature.hashCode() : 0);
+        result = 31 * result + (pressure != null ? pressure.hashCode() : 0);
+        result = 31 * result + (humidity != null ? humidity.hashCode() : 0);
+        result = 31 * result + (wind != null ? wind.hashCode() : 0);
+        return result;
+    }
 }
