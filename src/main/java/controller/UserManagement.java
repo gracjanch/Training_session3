@@ -1,5 +1,6 @@
 package controller;
 
+import model.Location;
 import view.UserInformation;
 
 import java.util.Scanner;
@@ -21,7 +22,7 @@ public class UserManagement {
     private void selectOption(String choice) {
         switch (choice) {
             case "1":
-                UserInformation.addLocation();
+                Location.addLocation();
                 break;
             case "2":
                 UserInformation.displayAllLocations();
@@ -31,7 +32,7 @@ public class UserManagement {
                 break;
         }
     }
-    private String userChoice() {
+    public static String userChoice() {
         Scanner sc = new Scanner(System.in);
         return sc.nextLine();
     }

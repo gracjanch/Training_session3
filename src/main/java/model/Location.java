@@ -1,5 +1,9 @@
 package model;
 
+import controller.LocationManagement;
+import controller.LocationValidate;
+import controller.UserManagement;
+
 import java.util.UUID;
 
 public class Location {
@@ -71,17 +75,18 @@ public class Location {
                 '}';
     }
 
-    public Location addLocation() {
-        System.out.println("Write coordinates: (-90 -> 0 (S) 0 -> 90 (N))");
-        String coordinates = "";
+    public static void addLocation() {
+        System.out.println("Write coordinates: (example: 40x100)");
+        String coordinates = LocationValidate.validCoordinate();
         System.out.println("Write city name: (cannot be empty)");
-        //String city = validCity();
-        String city = "";
+        String city = LocationValidate.validCity();
         System.out.println("Write region: (optional)");
-        String region = "";
+        String region = UserManagement.userChoice();
         System.out.println("Write country name: (cannot be empty)");
-        String country = "";
-        return new Location(coordinates, city, region, country);
+        String country = LocationValidate.validCity();
+
+        LocationManagement locationManagement = new LocationManagement();
+        locationManagement.addLocation(new Location(coordinates, city, region, country));
     }
 
 }
