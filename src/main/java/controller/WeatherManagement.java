@@ -22,7 +22,7 @@ public class WeatherManagement {
     }
 
     public List<Weather> getListOfWeatherToDisplay() {
-        LocationManagement locationManagement = new LocationManagement("src/main/resources/weatherFiles/location.csv");
+        LocationManagement locationManagement = new LocationManagement("src/main/resources/weatherFiles/locations.csv");
         WeatherManagement weatherManagement = new WeatherManagement("src/main/resources/weatherFiles/weather.csv");
 
         List<Location> locations = locationManagement.getListOfAllLocations();

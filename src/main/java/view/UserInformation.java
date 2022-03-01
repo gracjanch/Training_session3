@@ -32,9 +32,9 @@ public class UserInformation {
     }
 
     public static void displayAllLocations() {
-        final String path = "src/main/resources/weatherFiles/weather.csv";
+        final String path = "src/main/resources/weatherFiles/locations.csv";
         System.out.println("All locations: ");
-        LocationManagement locationManagement = new LocationManagement("src/main/resources/weatherFiles/location.csv");
+        LocationManagement locationManagement = new LocationManagement(path);
         locationManagement.getListOfAllLocations().forEach(System.out::println);
     }
 
@@ -46,7 +46,7 @@ public class UserInformation {
                 UserInformation.getInfoFromUser("Type country")
         );
 
-        LocationManagement locationManagement = new LocationManagement("src/main/resources/weatherFiles/location.csv");
+        LocationManagement locationManagement = new LocationManagement("src/main/resources/weatherFiles/locations.csv");
         locationManagement.addLocation(location);
     }
 
