@@ -15,11 +15,11 @@ public class UserValidate {
             Pattern userChoicePattern = Pattern.compile("[1-4]{1}");
             Matcher m = userChoicePattern.matcher(uChoice);
             properlyValue = m.find();
-            if(properlyValue == true){
-                return uChoice;
+            if(properlyValue){
+                break;
             }
             System.out.println("Incorrect data. Write again.");
-        }while(properlyValue != true);
+        }while(!properlyValue);
         return uChoice;
     }
 }
