@@ -47,7 +47,8 @@ public class UserInformation {
     }
 
     public static void displayWeather() {
-        WeatherManagement weatherManagement = new WeatherManagement("src/main/resources/weatherFiles/weather.csv");
+        WeatherManagement weatherManagement = new WeatherManagement("src/main/resources/weatherFiles/locations.csv",
+                "src/main/resources/weatherFiles/weather.csv");
         weatherManagement.getListOfWeatherToDisplay().forEach(System.out::println);
     }
 }

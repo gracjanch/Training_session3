@@ -22,16 +22,19 @@ public class LocationValidate {
         return cityLocation;
     }
 
+
     public static String validCoordinate() {
         boolean properlyValue;
         String cityCoordinate;
         boolean firstCoordBoolean = false;
         boolean secondCoordBoolean = false;
         do {
+
             cityCoordinate = new Scanner(System.in).nextLine();
             Pattern nameCityPattern = Pattern.compile("[-]*+[0-9]+[x]+[-]*[0-9]+");
             Matcher m = nameCityPattern.matcher(cityCoordinate);
             properlyValue = m.find();
+
             if(!properlyValue){
                 System.out.println("Incorrect data. Write coordinates again.");
                 continue;
@@ -53,6 +56,14 @@ public class LocationValidate {
 
 
 
+
+            if(properlyValue && firstCoordBoolean && secondCoordBoolean){
+                return cityCoordinate;
+            }
+            System.out.println("Incorrect data. Write coordinates again.");
+        }while(!properlyValue || !firstCoordBoolean || !secondCoordBoolean);
+        return cityCoordinate;
+    }
 
 
 }

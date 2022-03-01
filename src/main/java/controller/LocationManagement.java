@@ -36,7 +36,7 @@ public class LocationManagement {
         UserInformation.addLocationMessages(3);;
         String country = LocationValidate.validCity();
 
-        LocationManagement locationManagement = new LocationManagement();
+        LocationManagement locationManagement = new LocationManagement("src/main/resources/weatherFiles/locations.csv");
         locationManagement.addLocation(new Location(coordinates, city, region, country));
     }
 
