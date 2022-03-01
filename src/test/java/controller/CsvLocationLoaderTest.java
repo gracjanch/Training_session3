@@ -15,7 +15,7 @@ class CsvLocationLoaderTest {
     void shouldLoadLocation() {
         CsvLocationLoader csvLocationLoader = new CsvLocationLoader();
 
-        List<Location> result = csvLocationLoader.read("src/test/resources/weatherFiles/locationTest.csv");
+        List<Location> result = csvLocationLoader.read("src/test/resources/weatherFiles/locationLoadingTest.csv");
 
         Location location = new Location();
         location.setId(UUID.fromString("b86cfc49-5337-458e-80ed-80ad11ac1abc"));
