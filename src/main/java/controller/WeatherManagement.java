@@ -9,7 +9,10 @@ import java.util.List;
 public class WeatherManagement {
     public List<Weather> getListOfWeatherInEachCity() {
         CsvWeatherLoader csvWeatherLoader = new CsvWeatherLoader();
-        return csvWeatherLoader.read("src/main/resources/weatherFiles/weather.csv");
+        return csvWeatherLoader.read("src/main/resources/weatherFiles/weather.csv")
+                .stream()
+                .filter(weather -> weather != null)
+                .toList();
     }
 
     public List<Weather> getListOfWeatherToDisplay() {
