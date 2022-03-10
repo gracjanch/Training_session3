@@ -1,4 +1,4 @@
-package controller;
+package validation;
 
 import java.util.Scanner;
 import java.util.regex.Matcher;

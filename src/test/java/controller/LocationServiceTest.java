@@ -2,20 +2,13 @@ package controller;
 
 import model.entity.Location;
 import org.junit.jupiter.api.Test;
+import service.LocationService;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
-import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class LocationManagementTest {
+class LocationServiceTest {
     @Test
     void shouldAddLocation() {
 //        String path = "src/test/resources/weatherFiles/locationTest.csv";
@@ -53,8 +46,8 @@ class LocationManagementTest {
     void shouldReturnListWithoutNull() {
         String path = "src/test/resources/weatherFiles/locationTest.csv";
 
-        LocationManagement locationManagement = new LocationManagement(path);
-        List<Location> result = locationManagement.getListOfAllLocations();
+        LocationService locationService = new LocationService(path);
+        List<Location> result = locationService.getListOfAllLocations();
 
         assertThat(result).hasSize(2)
                 .doesNotContainNull();

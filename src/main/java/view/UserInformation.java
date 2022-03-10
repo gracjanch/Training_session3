@@ -1,8 +1,11 @@
 package view;
 
-import controller.WeatherManagement;
-import controller.LocationManagement;
 
+import dao.LocationDao;
+import model.entity.Location;
+import service.WeatherManagement;
+
+import java.util.List;
 import java.util.Scanner;
 
 public class UserInformation {
@@ -29,10 +32,13 @@ public class UserInformation {
     }
 
     public static void displayAllLocations() {
-        final String path = "src/main/resources/weatherFiles/locations.csv";
-        System.out.println("All locations: ");
-        LocationManagement locationManagement = new LocationManagement(path);
-        locationManagement.getListOfAllLocations().forEach(System.out::println);
+        LocationDao locationDao = new LocationDao();
+        List<Location> allLocations = locationDao.getAllLocations();
+
+//        final String path = "src/main/resources/weatherFiles/locations.csv";
+//        System.out.println("All locations: ");
+//        LocationManagement locationManagement = new LocationManagement(path);
+//        locationManagement.getListOfAllLocations().forEach(System.out::println);
     }
 
     public static void addLocationMessages(int indeks) {

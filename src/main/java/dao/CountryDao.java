@@ -1,6 +1,6 @@
-package controller.dao;
+package dao;
 
-import controller.connection.HibernateUtil;
+import connection.HibernateUtil;
 import model.entity.Country;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

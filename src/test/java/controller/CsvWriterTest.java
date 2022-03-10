@@ -1,6 +1,6 @@
 package controller;
 
-import model.entity.Location;
+import loader.CsvWriter;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -10,7 +10,6 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;

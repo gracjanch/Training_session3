@@ -1,14 +1,18 @@
-package controller;
+package service;
 
+import loader.CsvLocationLoader;
+import loader.CsvWriter;
 import model.entity.Location;
+import validation.LocationValidate;
 import view.UserInformation;
+import view.UserManagement;
 
 import java.util.List;
 
-public class LocationManagement {
+public class LocationService {
     private final String path;
 
-    public LocationManagement(String path) {
+    public LocationService(String path) {
         this.path = path;
     }
 
@@ -25,7 +29,7 @@ public class LocationManagement {
                 .toList();
     }
 
-    public static void addLocation() {
+    public void addLocation() {
         UserInformation.addLocationMessages(0);
         String coordinates = LocationValidate.validCoordinate();
         UserInformation.addLocationMessages(1);;
@@ -35,7 +39,7 @@ public class LocationManagement {
         UserInformation.addLocationMessages(3);;
         String country = LocationValidate.validCity();
 
-        LocationManagement locationManagement = new LocationManagement("src/main/resources/weatherFiles/locations.csv");
+        LocationService locationService = new LocationService("src/main/resources/weatherFiles/locations.csv");
         //locationManagement.addLocation(new Location(coordinates, city, region, country));
     }
 

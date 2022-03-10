@@ -1,10 +1,11 @@
-package controller;
+package view;
 
-import view.UserInformation;
+import service.LocationService;
 
 import java.util.Scanner;
 
 public class UserManagement {
+
     public void start() {
         UserInformation.initialInfo();
 
@@ -21,7 +22,7 @@ public class UserManagement {
     private void selectOption(String choice) {
         switch (choice) {
             case "1":
-                LocationManagement.addLocation();
+                //LocationService.addLocation();
                 break;
             case "2":
                 UserInformation.displayAllLocations();

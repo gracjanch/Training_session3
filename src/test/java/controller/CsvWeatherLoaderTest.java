@@ -1,5 +1,6 @@
 package controller;
 
+import loader.CsvWeatherLoader;
 import model.entity.Weather;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 class CsvWeatherLoaderTest {
     @Test
     void shouldLoadWeather() {
-//        CsvWeatherLoader csvWeatherLoader = new CsvWeatherLoader();
+//        loader.CsvWeatherLoader csvWeatherLoader = new loader.CsvWeatherLoader();
 //        List<Weather> result = csvWeatherLoader.read("src/test/resources/weatherFiles/weatherTest.csv");
 //
 //
