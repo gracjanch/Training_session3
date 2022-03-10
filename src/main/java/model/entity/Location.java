@@ -15,9 +15,8 @@ import java.util.UUID;
 public class Location {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "city_id")
-    private Integer id;
+    private String id;
 
     @Column(name = "coordinates")
     private String coordinates;
