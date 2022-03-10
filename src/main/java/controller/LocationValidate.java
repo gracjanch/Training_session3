@@ -56,14 +56,4 @@ public class LocationValidate {
 
 
 
-
-            if(properlyValue && firstCoordBoolean && secondCoordBoolean){
-                return cityCoordinate;
-            }
-            System.out.println("Incorrect data. Write coordinates again.");
-        }while(!properlyValue || !firstCoordBoolean || !secondCoordBoolean);
-        return cityCoordinate;
-    }
-
-
 }

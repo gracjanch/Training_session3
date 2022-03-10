@@ -1,11 +1,8 @@
 package view;
 
 import controller.WeatherManagement;
-import model.Location;
 import controller.LocationManagement;
-import model.Weather;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class UserInformation {

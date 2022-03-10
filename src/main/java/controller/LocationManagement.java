@@ -1,10 +1,9 @@
 package controller;
 
-import model.Location;
+import model.entity.Location;
 import view.UserInformation;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LocationManagement {
     private final String path;
@@ -37,7 +36,7 @@ public class LocationManagement {
         String country = LocationValidate.validCity();
 
         LocationManagement locationManagement = new LocationManagement("src/main/resources/weatherFiles/locations.csv");
-        locationManagement.addLocation(new Location(coordinates, city, region, country));
+        //locationManagement.addLocation(new Location(coordinates, city, region, country));
     }
 
 }
