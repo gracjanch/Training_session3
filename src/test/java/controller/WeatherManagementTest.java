@@ -1,6 +1,6 @@
 package controller;
 
-import model.Weather;
+import model.entity.Weather;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

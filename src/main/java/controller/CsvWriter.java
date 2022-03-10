@@ -1,6 +1,6 @@
 package controller;
 
-import model.Location;
+import model.entity.Location;
 
 import java.io.IOException;
 import java.nio.file.Files;

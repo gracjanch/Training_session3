@@ -1,7 +1,7 @@
 package controller;
 
-import model.Location;
-import model.Weather;
+import model.entity.Location;
+import model.entity.Weather;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -31,13 +31,13 @@ public class WeatherManagement {
 
         List<Weather> weatherListToDisplay = new LinkedList<>();
 
-        for(Location location : locations) {
-            for(Weather weather : weatherList) {
-                if(location.getCity().equals(weather.getCityName())) {
-                    weatherListToDisplay.add(weather);
-                }
-            }
-        }
+//        for(Location location : locations) {
+//            for(Weather weather : weatherList) {
+//                if(location.getCity().equals(weather.getCityName())) {
+//                    weatherListToDisplay.add(weather);
+//                }
+//            }
+//        }
         return weatherListToDisplay;
     }
 }

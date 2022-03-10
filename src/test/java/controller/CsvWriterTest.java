@@ -1,6 +1,6 @@
 package controller;
 
-import model.Location;
+import model.entity.Location;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -22,14 +22,14 @@ class CsvWriterTest {
 
         CsvWriter csvWriter = new CsvWriter(path);
 
-        Location location = new Location();
-        location.setId(UUID.fromString("b86cfc49-5337-458e-80ed-80ad11ac1abc"));
-        location.setCoordinates("100x100");
-        location.setCity("Krakow");
-        location.setRegion("Region");
-        location.setCountry("Country");
-
-        csvWriter.write(location);
+//        Location location = new Location();
+//        location.setId(UUID.fromString("b86cfc49-5337-458e-80ed-80ad11ac1abc"));
+//        location.setCoordinates("100x100");
+//        location.setCity("Krakow");
+//        location.setRegion("Region");
+//        location.setCountry("Country");
+//
+//        csvWriter.write(location);
 
         List<String> lines = new ArrayList<>();
 
