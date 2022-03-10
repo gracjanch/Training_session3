@@ -1,4 +1,4 @@
-package controller;
+package loader;
 
 import model.entity.Location;
 

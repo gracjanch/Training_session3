@@ -2,6 +2,7 @@ package controller;
 
 import model.entity.Weather;
 import org.junit.jupiter.api.Test;
+import service.WeatherManagement;
 
 import java.util.List;
 

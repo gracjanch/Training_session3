@@ -1,7 +1,9 @@
-package controller;
+package service;
 
+import loader.CsvWeatherLoader;
 import model.entity.Location;
 import model.entity.Weather;
+import service.LocationService;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -24,9 +26,9 @@ public class WeatherManagement {
     }
 
     public List<Weather> getListOfWeatherToDisplay() {
-        LocationManagement locationManagement = new LocationManagement(locationsPath);
+        LocationService locationService = new LocationService(locationsPath);
 
-        List<Location> locations = locationManagement.getListOfAllLocations();
+        List<Location> locations = locationService.getListOfAllLocations();
         List<Weather> weatherList = getListOfWeatherInEachCity();
 
         List<Weather> weatherListToDisplay = new LinkedList<>();

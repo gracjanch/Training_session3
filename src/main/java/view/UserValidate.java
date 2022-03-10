@@ -1,9 +1,7 @@
-package controller;
+package view;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import static controller.UserManagement.userChoice;
 
 public class UserValidate {
 

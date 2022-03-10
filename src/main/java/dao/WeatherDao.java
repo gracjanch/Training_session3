@@ -1,4 +1,4 @@
-package controller.dao;
+package dao;
 
 public class WeatherDao {
 }
