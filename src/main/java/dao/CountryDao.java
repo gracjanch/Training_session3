@@ -8,20 +8,23 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import java.util.Collections;
+import java.util.List;
+
 public class CountryDao {
     private final Logger logger = LogManager.getLogger(CountryDao.class);
 
-    public void displayAllCountries(String id) {
+    public List<String> getAllCountriesId() {
         Transaction transaction = null;
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
 
-            Country country = session.get(Country.class, id);
+            List<String> allCountriesId = session.createQuery("SELECT c.countryId FROM Country c").getResultList();
 
             transaction.commit();
 
-            System.out.println(country);
+            return allCountriesId;
 
         } catch (HibernateException e) {
             if (transaction != null)
@@ -29,5 +32,6 @@ public class CountryDao {
 
             logger.error(e.getMessage(), e);
         }
+        return Collections.emptyList();
     }
 }

@@ -5,12 +5,13 @@ import service.LocationService;
 import java.util.Scanner;
 
 public class UserManagement {
+    private static final UserInformation info = new UserInformation();
 
     public void start() {
-        UserInformation.initialInfo();
+        info.initialInfo();
 
         while (true) {
-            UserInformation.options();
+            info.options();
             String choice = UserValidate.validUserChoice();
             if(choice.equals("4")) {
                 break;
@@ -22,13 +23,13 @@ public class UserManagement {
     private void selectOption(String choice) {
         switch (choice) {
             case "1":
-                //LocationService.addLocation();
+                info.addLocation();
                 break;
             case "2":
-                UserInformation.displayAllLocations();
+                info.displayAllLocations();
                 break;
             case "3":
-                UserInformation.displayWeather();
+                info.displayWeather();
                 break;
         }
     }

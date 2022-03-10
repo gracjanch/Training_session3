@@ -26,11 +26,11 @@ public class WeatherManagement {
     }
 
     public List<Weather> getListOfWeatherToDisplay() {
-        LocationService locationService = new LocationService(locationsPath);
-
-        List<Location> locations = locationService.getListOfAllLocations();
-        List<Weather> weatherList = getListOfWeatherInEachCity();
-
+//        LocationService locationService = new LocationService(locationsPath);
+//
+//        List<Location> locations = locationService.getListOfAllLocations();
+//        List<Weather> weatherList = getListOfWeatherInEachCity();
+//
         List<Weather> weatherListToDisplay = new LinkedList<>();
 
 //        for(Location location : locations) {
