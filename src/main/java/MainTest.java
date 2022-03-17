@@ -16,7 +16,7 @@ public class MainTest {
 
         List<Location> allLocation = new LocationDao().getAllLocations();
         for(Location l : allLocation){
-            //System.out.println(l.getId());
+
             weatherDao.weatherByCityNameAndDate(l.getId());
         }
 

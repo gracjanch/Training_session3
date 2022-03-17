@@ -19,6 +19,7 @@ public class WeatherDao {
             transaction = session.beginTransaction();
 
             Date data1 = new Date(Calendar.getInstance().getTime().getTime());
+            //
 
             List weathers = session.createQuery("FROM Weather w " +
                             "WHERE city_id = :city_id AND date = :date") /*and date = :date*/
