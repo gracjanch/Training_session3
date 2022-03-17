@@ -8,19 +8,22 @@ import org.hibernate.Transaction;
 
 
 import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 
 public class WeatherDao {
-    public void weatherByCityNameAndDate(String cityName, String weatherDate){
+    public void weatherByCityNameAndDate(String cityName){
         Transaction transaction = null;
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
 
+            Date data1 = new Date(Calendar.getInstance().getTime().getTime());
+
             List weathers = session.createQuery("FROM Weather w " +
                             "WHERE city_id = :city_id AND date = :date") /*and date = :date*/
                     .setParameter("city_id", cityName)
-                    .setParameter("date", Date.valueOf(weatherDate))
+                    .setParameter("date", data1)
                     .getResultList();
 
 
