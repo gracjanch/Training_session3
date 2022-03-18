@@ -29,7 +29,7 @@ public class UserManagement {
                 info.displayAllLocations();
                 break;
             case "3":
-                info.displayWeather();
+                info.displayWeatherForEachCity();
                 break;
         }
     }

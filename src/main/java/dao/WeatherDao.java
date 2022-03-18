@@ -2,27 +2,34 @@ package dao;
 
 import connection.HibernateUtil;
 import model.entity.Weather;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import view.UserInformation;
 
 
 import java.sql.Date;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
 public class WeatherDao {
-    public void weatherByCityNameAndDate(String cityName){
+    private final Logger logger = LogManager.getLogger();
+    private final UserInformation userInformation = new UserInformation();
+
+    public List<Weather> weatherByCityNameAndDate(String cityName){
         Transaction transaction = null;
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
 
             Date data1 = new Date(Calendar.getInstance().getTime().getTime());
-            //
+
 
             List weathers = session.createQuery("FROM Weather w " +
-                            "WHERE city_id = :city_id AND date = :date") /*and date = :date*/
+                            "WHERE city_id = :city_id AND date = :date")
                     .setParameter("city_id", cityName)
                     .setParameter("date", data1)
                     .getResultList();
@@ -30,12 +37,7 @@ public class WeatherDao {
 
             transaction.commit();
 
-            for(Object w : weathers){
-                Weather weather = (Weather)w;
-                System.out.println("City: " + weather.getLocation().getCity() + " Date: " + weather.getDate()
-                        + " Temperature: " + weather.getTemperature()
-                        + " Pressure: " + weather.getPressure());
-            }
+            return weathers;
 
         } catch (HibernateException hibernateException) {
             if (transaction != null)
@@ -43,5 +45,6 @@ public class WeatherDao {
 
             logger.error(hibernateException);
         }
+        return Collections.emptyList();
     }
 }
