@@ -2,6 +2,7 @@ package service;
 
 import dao.WeatherDao;
 import loader.CsvWeatherLoader;
+import lombok.NoArgsConstructor;
 import model.entity.Location;
 import model.entity.Weather;
 
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+@NoArgsConstructor
 public class WeatherService {
     private static WeatherDao weatherDao = new WeatherDao();
 
@@ -30,21 +32,6 @@ public class WeatherService {
         }
         return weathers;
     }
-
-
-
-    public WeatherService(String locationsPath, String weatherPath) {
-//        this.locationsPath = locationsPath;
-//        this.weatherPath = weatherPath;
-    }
-
-//    private List<Weather> getListOfWeatherInEachCity() {
-//        CsvWeatherLoader csvWeatherLoader = new CsvWeatherLoader();
-//        return csvWeatherLoader.read(weatherPath)
-//                .stream()
-//                .filter(weather -> weather != null)
-//                .toList();
-//    }
 
     public List<Weather> getListOfWeatherToDisplay() {
 //        LocationService locationService = new LocationService(locationsPath);

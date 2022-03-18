@@ -45,12 +45,6 @@ public class UserInformation {
                 .forEach(System.out::println);
     }
 
-
-    public void displayWeather() {
-        WeatherService weatherService = new WeatherService("src/main/resources/weatherFiles/locations.csv",
-                "src/main/resources/weatherFiles/weather.csv");
-        weatherService.getListOfWeatherToDisplay().forEach(System.out::println);
-    }
     public void addLocation() {
         Location location = Location.builder()
                 .id(locationValidate.validateCityId())
@@ -68,7 +62,6 @@ public class UserInformation {
         locationService.addLocation(location);
 
         }
-
 
     public void displayWeatherForEachCity() {
         System.out.println("Weather for each city: ");
