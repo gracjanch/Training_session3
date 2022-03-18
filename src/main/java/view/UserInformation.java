@@ -3,8 +3,9 @@ package view;
 
 import model.entity.Country;
 import model.entity.Location;
+import model.entity.Weather;
 import service.LocationService;
-import service.WeatherManagement;
+import service.WeatherService;
 import validation.LocationValidate;
 
 import java.util.Scanner;
@@ -12,12 +13,15 @@ import java.util.Scanner;
 public class UserInformation {
     private static final LocationService locationService = new LocationService();
     private static final LocationValidate locationValidate = new LocationValidate();
+    private static final WeatherService weatherService = new WeatherService();
+
 
     public void initialInfo() {
         System.out.println("===== Weather Application =====");
     }
 
     public void options() {
+        System.out.println("======================");
         System.out.println("[1] - Add location.");
         System.out.println("[2] - Display all locations.");
         System.out.println("[3] - Show weather.");
@@ -41,18 +45,11 @@ public class UserInformation {
                 .forEach(System.out::println);
     }
 
-//    private static void addLocationMessages(int indeks) {
-//        String[] locationMessages = {"Write coordinates: (example: 40x100)",
-//                "Write city name: (cannot be empty)",
-//                "Write region: (optional)",
-//                "Write country name: (cannot be empty)"};
-//        System.out.println(locationMessages[indeks]);
-//    }
 
     public void displayWeather() {
-        WeatherManagement weatherManagement = new WeatherManagement("src/main/resources/weatherFiles/locations.csv",
+        WeatherService weatherService = new WeatherService("src/main/resources/weatherFiles/locations.csv",
                 "src/main/resources/weatherFiles/weather.csv");
-        weatherManagement.getListOfWeatherToDisplay().forEach(System.out::println);
+        weatherService.getListOfWeatherToDisplay().forEach(System.out::println);
     }
     public void addLocation() {
         Location location = Location.builder()
@@ -70,14 +67,19 @@ public class UserInformation {
 
         locationService.addLocation(location);
 
-
-//        addLocationMessages(0);
-//        String coordinates = LocationValidate.validCoordinate();
-//        addLocationMessages(1);;
-//        String city = LocationValidate.validateCityOrCountry();
-//        addLocationMessages(2);;
-//        String region = UserManagement.userChoice();
-//        addLocationMessages(3);;
-//        String country = LocationValidate.validateCityOrCountry();
         }
+
+
+    public void displayWeatherForEachCity() {
+        System.out.println("Weather for each city: ");
+
+        for (Weather w : weatherService.getListOfWeatherForEachCity()) {
+            System.out.println("City: " + w.getLocation().getCity() + " Date: " + w.getDate()
+                    + " Temperature: " + w.getTemperature()
+                    + " Pressure: " + w.getPressure()
+                    + " Humidity: " + w.getHumidity()
+                    + " Wind with direction " + w.getWind()
+            );
+        }
+    }
 }
