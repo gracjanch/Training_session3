@@ -29,9 +29,14 @@ public class WeatherService {
         for(Location location : allLocation) {
             if(!citiesWithWeatherFromDataBase.contains(location.getId())) {
                 Weather weatherForCity = owmManagement.getWeatherForCity(location);
-                weatherForCity.setLocation(location);
-                weathers.add(weatherForCity);
-                weatherDao.saveWeather(weatherForCity);
+                if(weatherForCity != null) {
+                    weatherForCity.setLocation(location);
+                    weathers.add(weatherForCity);
+                    weatherDao.saveWeather(weatherForCity);
+                } else {
+                    weathers.add(new Weather(null,location, "no data",
+                            "no data", "no data", "no data", null ));
+                }
             }
         }
         return weathers;

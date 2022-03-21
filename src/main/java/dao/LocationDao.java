@@ -55,27 +55,6 @@ public class LocationDao {
         }
     }
 
-    public List<String> getAllCitiesId() {
-        Transaction transaction = null;
-
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();
-
-            List<String> allCitiesId = session.createQuery("SELECT l.id FROM Location l").getResultList();
-
-            transaction.commit();
-
-            return allCitiesId;
-
-        } catch (HibernateException e) {
-            if (transaction != null)
-                transaction.rollback();
-
-            logger.error(e.getMessage(), e);
-        }
-        return Collections.emptyList();
-    }
-
     public void deleteLocation(Location location) {
         Transaction transaction = null;
 
@@ -91,5 +70,27 @@ public class LocationDao {
 
             logger.info(e.getMessage());
         }
+    }
+
+    public Location findById(String id) {
+        Transaction transaction = null;
+
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+
+            Location location = session.createQuery("FROM Location WHERE city_id = :cityId", Location.class)
+                    .setParameter("cityId", id)
+                    .getSingleResult();
+
+            transaction.commit();
+
+            return location;
+        } catch (HibernateException e) {
+            if (transaction != null)
+                transaction.rollback();
+
+            logger.info(e.getMessage());
+        }
+        return null;
     }
 }

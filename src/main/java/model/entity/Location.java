@@ -3,6 +3,7 @@ package model.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @NoArgsConstructor
@@ -30,4 +31,18 @@ public class Location {
     @ManyToOne
     @JoinColumn(name = "country_id")
     private Country country;
+
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "location", fetch = FetchType.EAGER)
+    private List<Weather> weathers;
+
+    @Override
+    public String toString() {
+        return "Location{" +
+                "id='" + id + '\'' +
+                ", coordinates='" + coordinates + '\'' +
+                ", city='" + city + '\'' +
+                ", region='" + region + '\'' +
+                ", country=" + country +
+                '}';
+    }
 }
