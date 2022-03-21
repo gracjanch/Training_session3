@@ -1,6 +1,6 @@
 package view;
 
-import service.LocationService;
+import validation.UserValidate;
 
 import java.util.Scanner;
 
@@ -13,7 +13,7 @@ public class UserManagement {
         while (true) {
             info.options();
             String choice = UserValidate.validUserChoice();
-            if(choice.equals("4")) {
+            if(choice.equals("5")) {
                 break;
             }
             selectOption(choice);
@@ -26,9 +26,12 @@ public class UserManagement {
                 info.addLocation();
                 break;
             case "2":
-                info.displayAllLocations();
+                info.deleteLocation();
                 break;
             case "3":
+                info.displayAllLocations();
+                break;
+            case "4":
                 info.displayWeatherForEachCity();
                 break;
         }

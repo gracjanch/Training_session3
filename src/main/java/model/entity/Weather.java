@@ -16,8 +16,6 @@ public class Weather {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    //@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "weather_for_each_city_generator")
-    //@SequenceGenerator(name="persons_generator", sequenceName = "persons_person_id_seq",allocationSize = 1)
     @Column(name = "weather_id")
     private Integer weatherId;
 

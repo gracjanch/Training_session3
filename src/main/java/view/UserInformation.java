@@ -1,6 +1,8 @@
 package view;
 
 
+import connection.owm.OwmManagement;
+import dao.WeatherDao;
 import model.entity.Country;
 import model.entity.Location;
 import model.entity.Weather;
@@ -13,7 +15,7 @@ import java.util.Scanner;
 public class UserInformation {
     private static final LocationService locationService = new LocationService();
     private static final LocationValidate locationValidate = new LocationValidate();
-    private static final WeatherService weatherService = new WeatherService();
+    private static final WeatherService weatherService = new WeatherService(new WeatherDao(), new OwmManagement());
 
 
     public void initialInfo() {
@@ -23,9 +25,10 @@ public class UserInformation {
     public void options() {
         System.out.println("======================");
         System.out.println("[1] - Add location.");
-        System.out.println("[2] - Display all locations.");
-        System.out.println("[3] - Show weather.");
-        System.out.println("[4] - Quit.");
+        System.out.println("[2] - Delete location.");
+        System.out.println("[3] - Display all locations.");
+        System.out.println("[4] - Show weather.");
+        System.out.println("[5] - Quit.");
         System.out.print("Choose an option: ");
     }
 
@@ -47,13 +50,13 @@ public class UserInformation {
 
     public void addLocation() {
         Location location = Location.builder()
-                .id(locationValidate.validateCityId())
+                .id(getInfoFromUser("Type city id (example KRA, RZE)"))
                 .coordinates(locationValidate.validateCoordinates())
                 .city(locationValidate.validateCityOrCountry("city name"))
                 .region(locationValidate.validateRegion())
                 .country(
                         Country.builder()
-                                .countryId(locationValidate.validateCountryId())
+                                .countryId(getInfoFromUser("Type country id (example PL,DE)"))
                                 .countryName(locationValidate.validateCityOrCountry("country name"))
                                 .build()
                 )
@@ -66,7 +69,7 @@ public class UserInformation {
     public void displayWeatherForEachCity() {
         System.out.println("Weather for each city: ");
 
-        for (Weather w : weatherService.getListOfWeatherForEachCity()) {
+        for (Weather w : weatherService.getWeatherFromDbOrDownloadForEachCity()) {
             System.out.println("City: " + w.getLocation().getCity() + " Date: " + w.getDate()
                     + " Temperature: " + w.getTemperature()
                     + " Pressure: " + w.getPressure()
@@ -75,4 +78,22 @@ public class UserInformation {
             );
         }
     }
+
+    public void deleteLocation() {
+        Location location = Location.builder()
+                .id(locationValidate.validateCityId())
+                .coordinates(locationValidate.validateCoordinates())
+                .city(locationValidate.validateCityOrCountry("city name"))
+                .region(locationValidate.validateRegion())
+                .country(
+                        Country.builder()
+                                .countryId(locationValidate.validateCountryId())
+                                .countryName(locationValidate.validateCityOrCountry("country name"))
+                                .build()
+                )
+                .build();
+
+        locationService.deleteLocation(location);
+    }
+
 }
