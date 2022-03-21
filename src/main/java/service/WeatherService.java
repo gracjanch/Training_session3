@@ -2,54 +2,39 @@ package service;
 
 import connection.owm.OwmManagement;
 import dao.WeatherDao;
-import loader.CsvWeatherLoader;
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import model.entity.Location;
 import model.entity.Weather;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 @NoArgsConstructor
+@AllArgsConstructor
 public class WeatherService {
-    private static WeatherDao weatherDao = new WeatherDao();
-    private static OwmManagement owmManagement = new OwmManagement();
+    private WeatherDao weatherDao;
+    private OwmManagement owmManagement;
 
-//    private final String locationsPath;
-//    private final String weatherPath;
-
-    public List<Weather> getListOfWeatherForEachCity(){
+    public List<Weather> getWeatherFromDbOrDownloadForEachCity(){
         List<Location> allLocation = new LocationService().getListOfAllLocations();
-        List<Weather> weathers = new ArrayList<>();
 
+        List<String> locationsIds = allLocation.stream()
+                .map(Location::getId).toList();
 
-        for(Location l : allLocation){
-            if(weatherDao.isWeatherAvailable(l.getId())) {
-                weathers.add(weatherDao.weatherByCityNameAndDate(l.getId()).get(0));
-            } else {
-                weathers.add(owmManagement.getWeatherForCity(l));
+        List<Weather> weathers = weatherDao.weatherByCityNameAndDate(locationsIds);
+
+        List<String> citiesWithWeatherFromDataBase = weathers.stream().map(weather -> weather.getLocation().getId()).toList();
+
+        for(Location location : allLocation) {
+            if(!citiesWithWeatherFromDataBase.contains(location.getId())) {
+                Weather weatherForCity = owmManagement.getWeatherForCity(location);
+                weatherForCity.setLocation(location);
+                weathers.add(weatherForCity);
+                weatherDao.saveWeather(weatherForCity);
             }
-
         }
         return weathers;
     }
 
-    public List<Weather> getListOfWeatherToDisplay() {
-//        LocationService locationService = new LocationService(locationsPath);
-//
-//        List<Location> locations = locationService.getListOfAllLocations();
-//        List<Weather> weatherList = getListOfWeatherInEachCity();
-//
-        List<Weather> weatherListToDisplay = new LinkedList<>();
-
-//        for(Location location : locations) {
-//            for(Weather weather : weatherList) {
-//                if(location.getCity().equals(weather.getCityName())) {
-//                    weatherListToDisplay.add(weather);
-//                }
-//            }
-//        }
-        return weatherListToDisplay;
-    }
 }

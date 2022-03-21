@@ -14,7 +14,6 @@ import java.text.SimpleDateFormat;
 
 public class OwmManagement {
     private final Logger logger = LogManager.getLogger(OwmManagement.class);
-    private final WeatherDao weatherDao = new WeatherDao();
 
     public Weather getWeatherForCity(Location location) {
         OWM owm = new OWM("f85b2eb3e2ade76bcb7e12953ba55c59");
@@ -33,15 +32,12 @@ public class OwmManagement {
         }
 
         if (cwd.hasRespCode() && cwd.getRespCode() == 200) {
-            weather.setLocation(location);
             weather.setTemperature(cwd.getMainData().getTempMin() + "/" + cwd.getMainData().getTempMax());
             weather.setPressure(cwd.getMainData().getPressure().toString());
             weather.setHumidity(cwd.getMainData().getHumidity().toString());
             weather.setWind(cwd.getWindData().getSpeed().toString());
             SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd");
             weather.setDate(Date.valueOf(s.format(cwd.getDateTime())));
-
-            weatherDao.saveWeather(weather);
 
             return weather;
         }

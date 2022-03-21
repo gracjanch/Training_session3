@@ -14,7 +14,6 @@ import java.util.List;
 
 public class LocationDao {
     private final Logger logger = LogManager.getLogger(CountryDao.class);
-    private final UserInformation userInformation = new UserInformation();
 
     public List<Location> getAllLocations() {
         Transaction transaction = null;
@@ -75,5 +74,22 @@ public class LocationDao {
             logger.error(e.getMessage(), e);
         }
         return Collections.emptyList();
+    }
+
+    public void deleteLocation(Location location) {
+        Transaction transaction = null;
+
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+
+            session.delete(location);
+
+            transaction.commit();
+        } catch (HibernateException e) {
+            if (transaction != null)
+                transaction.rollback();
+
+            logger.info(e.getMessage());
+        }
     }
 }

@@ -1,4 +1,6 @@
-package view;
+package validation;
+
+import view.UserManagement;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -10,7 +12,7 @@ public class UserValidate {
         String uChoice;
         do{
             uChoice = UserManagement.userChoice();
-            Pattern userChoicePattern = Pattern.compile("[1-4]{1}");
+            Pattern userChoicePattern = Pattern.compile("[1-5]{1}");
             Matcher m = userChoicePattern.matcher(uChoice);
             properlyValue = m.find();
             if(properlyValue){

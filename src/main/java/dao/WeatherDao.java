@@ -17,9 +17,8 @@ import java.util.List;
 
 public class WeatherDao {
     private final Logger logger = LogManager.getLogger();
-    private final UserInformation userInformation = new UserInformation();
 
-    public List<Weather> weatherByCityNameAndDate(String cityName){
+    public List<Weather> weatherByCityNameAndDate(List<String> cityIds){
         Transaction transaction = null;
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -29,8 +28,8 @@ public class WeatherDao {
 
 
             List weathers = session.createQuery("FROM Weather w " +
-                            "WHERE city_id = :city_id AND date = :date") /*and date = :date*/
-                    .setParameter("city_id", cityName)
+                            "WHERE city_id IN :city_ids AND date = :date")
+                    .setParameter("city_ids", cityIds)
                     .setParameter("date", data1)
                     .getResultList();
 
@@ -46,10 +45,6 @@ public class WeatherDao {
             logger.error(hibernateException);
         }
         return Collections.emptyList();
-    }
-
-    public boolean isWeatherAvailable(String cityName) {
-        return !weatherByCityNameAndDate(cityName).equals(Collections.emptyList());
     }
 
     public void saveWeather(Weather weather) {
