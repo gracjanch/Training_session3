@@ -1,6 +1,8 @@
+import connection.owm.OwmManagement;
 import dao.LocationDao;
 import dao.WeatherDao;
 import model.entity.Location;
+import model.entity.Weather;
 import service.WeatherService;
 
 import java.sql.Date;
@@ -16,8 +18,11 @@ public class MainTest {
 
         List<Location> allLocations = locationDao.getAllLocations();
 
-        WeatherDao weatherDao = new WeatherDao();
+        OwmManagement owmManagement = new OwmManagement();
 
-        weatherDao.weatherByCityNameAndDate(allLocations.get(0))
+        Weather weatherForCity = owmManagement.getWeatherForCity(allLocations.get(0));
+
+        System.out.println(weatherForCity);
+
     }
 }

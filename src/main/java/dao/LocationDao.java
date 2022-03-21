@@ -1,7 +1,6 @@
 package dao;
 
-import connection.HibernateUtil;
-import model.entity.Country;
+import connection.hibernate.HibernateUtil;
 import model.entity.Location;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

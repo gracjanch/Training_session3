@@ -1,6 +1,6 @@
 package dao;
 
-import connection.HibernateUtil;
+import connection.hibernate.HibernateUtil;
 import model.entity.Weather;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,7 +29,7 @@ public class WeatherDao {
 
 
             List weathers = session.createQuery("FROM Weather w " +
-                            "WHERE city_id = :city_id AND date = :date")
+                            "WHERE city_id = :city_id AND date = :date") /*and date = :date*/
                     .setParameter("city_id", cityName)
                     .setParameter("date", data1)
                     .getResultList();
@@ -46,5 +46,28 @@ public class WeatherDao {
             logger.error(hibernateException);
         }
         return Collections.emptyList();
+    }
+
+    public boolean isWeatherAvailable(String cityName) {
+        return !weatherByCityNameAndDate(cityName).equals(Collections.emptyList());
+    }
+
+    public void saveWeather(Weather weather) {
+        Transaction transaction = null;
+
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+
+            session.save(weather);
+
+
+            transaction.commit();
+
+        } catch (HibernateException hibernateException) {
+            if (transaction != null)
+                transaction.rollback();
+
+            logger.error(hibernateException);
+        }
     }
 }
