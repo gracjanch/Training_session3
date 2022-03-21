@@ -2,6 +2,7 @@ package validation;
 
 import dao.CountryDao;
 import dao.LocationDao;
+import model.entity.Location;
 import view.UserInformation;
 
 import java.util.List;
@@ -53,18 +54,18 @@ public class LocationValidate {
             boolean isCorrectlyWritten = false;
             boolean isAvailable = false;
 
-            value = info.getInfoFromUser("Write country id (example: PL, GE): ");
+            value = info.getInfoFromUser("Write country id (example: PL, DE): ");
             Pattern countryIdPattern = Pattern.compile("^[A-Z]{2}$");
             Matcher m = countryIdPattern.matcher(value);
             isCorrectlyWritten = m.find();
 
-            if(allCountriesId.contains(value)) {
+            if (allCountriesId.contains(value)) {
                 isAvailable = true;
             } else {
                 info.toUser("This country does not exist. Try again.");
             }
 
-            if(isCorrectlyWritten && isAvailable) {
+            if (isCorrectlyWritten && isAvailable) {
                 isValid = true;
             }
 
@@ -73,29 +74,37 @@ public class LocationValidate {
         return value;
     }
 
-    public String validateCityId() {
+    public String validateCityId(String addOrDelete) {
         LocationDao locationDao = new LocationDao();
         String value;
         boolean isValid = false;
 
-        List<String> allCitiesId = locationDao.getAllCitiesId();
+        List<String> allCitiesId = locationDao.getAllLocations().stream().map(Location::getId).toList();
 
         do {
             boolean isCorrectlyWritten = false;
             boolean isAvailable = false;
 
             value = info.getInfoFromUser("Write city id (example: KRA, RZE): ");
-            Pattern countryIdPattern = Pattern.compile("^[A-Z]{3}$");
-            Matcher m = countryIdPattern.matcher(value);
+            Pattern cityIdPattern = Pattern.compile("^[A-Z]{3}$");
+            Matcher m = cityIdPattern.matcher(value);
             isCorrectlyWritten = m.find();
 
-            if(!allCitiesId.contains(value)) {
-                isAvailable = true;
+            if (addOrDelete.equals("add")) {
+                if (!allCitiesId.contains(value)) {
+                    isAvailable = true;
+                } else {
+                    info.toUser("This city already exists. Try again.");
+                }
             } else {
-                info.toUser("This city already exists. Try again.");
+                if (allCitiesId.contains(value)) {
+                    isAvailable = true;
+                } else {
+                    info.toUser("This city does not exist. Try again.");
+                }
             }
 
-            if(isCorrectlyWritten && isAvailable) {
+            if (isCorrectlyWritten && isAvailable) {
                 isValid = true;
             }
 
@@ -111,11 +120,11 @@ public class LocationValidate {
         do {
             value = info.getInfoFromUser("Write region (optional or " +
                     "should begin with upper case letter): ");
-            if(value.equals("")) {
+            if (value.equals("")) {
                 return null;
             }
-            Pattern coordinatesPattern = Pattern.compile("[A-Z]+[a-z]+");
-            Matcher m = coordinatesPattern.matcher(value);
+            Pattern regionPattern = Pattern.compile("[A-Z]+[a-z]+");
+            Matcher m = regionPattern.matcher(value);
             isValid = m.find();
         } while (!isValid);
 

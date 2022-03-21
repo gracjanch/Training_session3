@@ -32,7 +32,8 @@ public class OwmManagement {
         }
 
         if (cwd.hasRespCode() && cwd.getRespCode() == 200) {
-            weather.setTemperature(cwd.getMainData().getTempMin() + "/" + cwd.getMainData().getTempMax());
+            weather.setTemperature(Math.round(cwd.getMainData().getTempMin() - 273.15) + "/"
+                    + Math.round(cwd.getMainData().getTempMax() - 273.15));
             weather.setPressure(cwd.getMainData().getPressure().toString());
             weather.setHumidity(cwd.getMainData().getHumidity().toString());
             weather.setWind(cwd.getWindData().getSpeed().toString());

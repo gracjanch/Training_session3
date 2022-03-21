@@ -19,7 +19,7 @@ public class Weather {
     @Column(name = "weather_id")
     private Integer weatherId;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "city_id")
     private Location location;
 

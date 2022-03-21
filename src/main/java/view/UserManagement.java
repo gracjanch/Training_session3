@@ -6,13 +6,14 @@ import java.util.Scanner;
 
 public class UserManagement {
     private static final UserInformation info = new UserInformation();
+    private static final UserValidate userValidate = new UserValidate();
 
     public void start() {
         info.initialInfo();
 
         while (true) {
             info.options();
-            String choice = UserValidate.validUserChoice();
+            String choice = userValidate.validateUserChoice();
             if(choice.equals("5")) {
                 break;
             }
@@ -36,9 +37,4 @@ public class UserManagement {
                 break;
         }
     }
-    public static String userChoice() {
-        Scanner sc = new Scanner(System.in);
-        return sc.nextLine();
-    }
-
 }

@@ -2,6 +2,7 @@ package view;
 
 
 import connection.owm.OwmManagement;
+import dao.LocationDao;
 import dao.WeatherDao;
 import model.entity.Country;
 import model.entity.Location;
@@ -19,17 +20,17 @@ public class UserInformation {
 
 
     public void initialInfo() {
+        System.out.println("===============================");
         System.out.println("===== Weather Application =====");
     }
 
     public void options() {
-        System.out.println("======================");
+        System.out.println("===============================");
         System.out.println("[1] - Add location.");
         System.out.println("[2] - Delete location.");
         System.out.println("[3] - Display all locations.");
         System.out.println("[4] - Show weather.");
         System.out.println("[5] - Quit.");
-        System.out.print("Choose an option: ");
     }
 
     public void toUser(String info) {
@@ -37,7 +38,7 @@ public class UserInformation {
     }
 
     public String getInfoFromUser(String infoToUser) {
-        System.out.println(infoToUser);
+        System.out.print(infoToUser);
         Scanner sc = new Scanner(System.in);
         return sc.nextLine();
     }
@@ -50,38 +51,7 @@ public class UserInformation {
 
     public void addLocation() {
         Location location = Location.builder()
-                .id(getInfoFromUser("Type city id (example KRA, RZE)"))
-                .coordinates(locationValidate.validateCoordinates())
-                .city(locationValidate.validateCityOrCountry("city name"))
-                .region(locationValidate.validateRegion())
-                .country(
-                        Country.builder()
-                                .countryId(getInfoFromUser("Type country id (example PL,DE)"))
-                                .countryName(locationValidate.validateCityOrCountry("country name"))
-                                .build()
-                )
-                .build();
-
-        locationService.addLocation(location);
-
-        }
-
-    public void displayWeatherForEachCity() {
-        System.out.println("Weather for each city: ");
-
-        for (Weather w : weatherService.getWeatherFromDbOrDownloadForEachCity()) {
-            System.out.println("City: " + w.getLocation().getCity() + " Date: " + w.getDate()
-                    + " Temperature: " + w.getTemperature()
-                    + " Pressure: " + w.getPressure()
-                    + " Humidity: " + w.getHumidity()
-                    + " Wind with direction " + w.getWind()
-            );
-        }
-    }
-
-    public void deleteLocation() {
-        Location location = Location.builder()
-                .id(locationValidate.validateCityId())
+                .id(locationValidate.validateCityId("add"))
                 .coordinates(locationValidate.validateCoordinates())
                 .city(locationValidate.validateCityOrCountry("city name"))
                 .region(locationValidate.validateRegion())
@@ -92,6 +62,31 @@ public class UserInformation {
                                 .build()
                 )
                 .build();
+
+        locationService.addLocation(location);
+
+    }
+
+    public void displayWeatherForEachCity() {
+        System.out.println("Weather for each city: ");
+
+        for (Weather w : weatherService.getWeatherFromDbOrDownloadForEachCity()) {
+            if (w.getWeatherId() != null) {
+                System.out.println("City: " + w.getLocation().getCity() + "  Date: " + w.getDate() + ", "
+                        + " Temperature (min/max): " + w.getTemperature() + " " + (char) (176) + "C, "
+                        + " Pressure: " + w.getPressure() + " MPa, "
+                        + " Humidity: " + w.getHumidity() + "%, "
+                        + " Wind: " + w.getWind() + " km/h"
+                );
+            } else {
+                System.out.println("City: " + w.getLocation().getCity() + "  NO DATA");
+            }
+        }
+    }
+
+    public void deleteLocation() {
+        LocationDao locationDao = new LocationDao();
+        Location location = locationDao.findById(locationValidate.validateCityId("delete"));
 
         locationService.deleteLocation(location);
     }
