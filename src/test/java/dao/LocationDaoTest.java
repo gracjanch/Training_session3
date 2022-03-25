@@ -56,7 +56,6 @@ class LocationDaoTest {
     //deleteLocation
     @Test
     public void shouldDeleteLocation() {
-
         LocationDao resultLocationDao = new LocationDao();
 
         resultLocationDao.addLocation(testLocation);

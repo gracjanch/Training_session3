@@ -25,5 +25,4 @@ class CountryDaoTest {
     public void shouldCheckCountryIdIsNotIn(){
         Assert.assertFalse(countryIDs.contains("GB"));
     }
-
 }
