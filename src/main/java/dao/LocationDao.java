@@ -7,7 +7,6 @@ import org.apache.logging.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import view.UserInformation;
 
 import java.util.Collections;
 import java.util.List;

@@ -1,10 +1,9 @@
-package view;
+package service;
 
 import validation.UserValidate;
+import view.UserInformation;
 
-import java.util.Scanner;
-
-public class UserManagement {
+public class UserService {
     private static final UserInformation info = new UserInformation();
     private static final UserValidate userValidate = new UserValidate();
 
@@ -27,16 +26,18 @@ public class UserManagement {
                 info.addLocation();
                 break;
             case "2":
-                info.deleteLocation();
+                info.updateLocation();
                 break;
             case "3":
-                info.displayAllLocations();
+                info.deleteLocation();
                 break;
             case "4":
-                info.displayWeatherForEachCity();
+                info.displayAllLocations();
                 break;
             case "5":
-                info.updateLocation();
+                info.displayWeatherForEachCity();
+                break;
+
         }
     }
 }

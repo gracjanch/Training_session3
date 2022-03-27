@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import model.entity.Location;
 import model.entity.Weather;
 
-import java.util.LinkedList;
 import java.util.List;
 
 @NoArgsConstructor
