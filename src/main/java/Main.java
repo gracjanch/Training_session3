@@ -1,8 +1,8 @@
-import view.UserManagement;
+import service.UserService;
 
 public class Main {
     public static void main(String[] args) {
-        UserManagement userManagement = new UserManagement();
-        userManagement.start();
+        UserService userService = new UserService();
+        userService.start();
     }
 }

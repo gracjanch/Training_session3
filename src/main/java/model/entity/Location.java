@@ -35,6 +35,14 @@ public class Location {
     @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "location", fetch = FetchType.EAGER)
     private List<Weather> weathers;
 
+    public Location(String id, String coordinates, String city, String region, Country country) {
+        this.id = id;
+        this.coordinates = coordinates;
+        this.city = city;
+        this.region = region;
+        this.country = country;
+    }
+
     @Override
     public String toString() {
         return "Location{" +

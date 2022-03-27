@@ -1,9 +1,6 @@
 package validation;
 
 import view.UserInformation;
-import view.UserManagement;
-
-import java.awt.event.WindowFocusListener;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

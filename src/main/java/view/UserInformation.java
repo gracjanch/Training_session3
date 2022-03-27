@@ -27,10 +27,11 @@ public class UserInformation {
     public void options() {
         System.out.println("===============================");
         System.out.println("[1] - Add location.");
-        System.out.println("[2] - Delete location.");
-        System.out.println("[3] - Display all locations.");
-        System.out.println("[4] - Show weather.");
-        System.out.println("[5] - Quit.");
+        System.out.println("[2] - Update location.");
+        System.out.println("[3] - Delete location.");
+        System.out.println("[4] - Display all locations.");
+        System.out.println("[5] - Show weather.");
+        System.out.println("[6] - Quit.");
     }
 
     public void toUser(String info) {
