@@ -25,4 +25,9 @@ public class LocationService {
     public void deleteLocation(Location location) {
         locationDao.deleteLocation(location);
     }
+
+    public void updateLocation(Location location) {
+        locationDao.updateLocation(location);
+    }
+
 }

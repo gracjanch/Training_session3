@@ -91,4 +91,33 @@ public class UserInformation {
         locationService.deleteLocation(location);
     }
 
+    public void updateLocation() {
+        LocationDao locationDao = new LocationDao();
+        Country country = new Country();
+        Location location = locationDao.findById(locationValidate.validateCityId("delete"));
+
+
+        location.setId(getInfoFromUser("Type new city id: (Before: "
+                + location.getId() + ")"));
+
+        System.out.print("(Before " + location.getCoordinates() + "). ");
+        location.setCoordinates(locationValidate.validateCoordinates());
+
+        System.out.print("(Before " + location.getCity() + "). ");
+        location.setCity(locationValidate.validateCityOrCountry("city name"));
+
+        System.out.print("(Before " + location.getRegion() + "). ");
+        location.setRegion(locationValidate.validateRegion());
+
+        System.out.print("(Before " + location.getCountry().getCountryId() + "). ");
+        country.setCountryId(getInfoFromUser("Type country id (example PL,DE)"));
+
+        System.out.print("(Before " + location.getCountry().getCountryName() + "). ");
+        country.setCountryName(locationValidate.validateCityOrCountry("country name"));
+
+        location.setCountry(country);
+
+        locationService.updateLocation(location);
+    }
+
 }
