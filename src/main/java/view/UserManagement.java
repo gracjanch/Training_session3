@@ -14,7 +14,7 @@ public class UserManagement {
         while (true) {
             info.options();
             String choice = userValidate.validateUserChoice();
-            if(choice.equals("5")) {
+            if(choice.equals("6")) {
                 break;
             }
             selectOption(choice);
@@ -35,6 +35,8 @@ public class UserManagement {
             case "4":
                 info.displayWeatherForEachCity();
                 break;
+            case "5":
+                info.updateLocation();
         }
     }
 }

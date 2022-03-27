@@ -17,7 +17,7 @@ public class UserValidate {
         do {
             value = info.getInfoFromUser("Choose an option: ");
 
-            Pattern choicePattern = Pattern.compile("[1-5]");
+            Pattern choicePattern = Pattern.compile("[1-6]");
             Matcher m = choicePattern.matcher(value);
             isValid = m.find();
         } while (!isValid);

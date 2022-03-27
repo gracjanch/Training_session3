@@ -71,4 +71,24 @@ class LocationDaoTest {
         Assert.assertTrue(sizeBeforeDelete == sizeAfterDelete + 1);
     }
 
+    @Test
+    public void shouldUpdateLocation(){
+        LocationDao resultLocationDao = new LocationDao();
+
+        resultLocationDao.addLocation(testLocation);
+
+        Location locationToUpdate = resultLocationDao.findById("WAR");
+
+        locationToUpdate.setCity("Toruń");
+
+        resultLocationDao.updateLocation(locationToUpdate);
+
+        String cityAfterUpdate = resultLocationDao.findById("WAR").getCity();
+
+        Assert.assertEquals("Toruń", cityAfterUpdate);
+
+        resultLocationDao.deleteLocation(locationToUpdate);
+
+    }
+
 }
